@@ -1,0 +1,44 @@
+name: Docker app container testing
+
+on:
+  pull_request:
+    branches: [develop]
+
+jobs:
+  docker:
+    name: Check docker image build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check if Docker is installed
+        run: docker --version
+      - name: Build app Docker image with Docker
+        run: docker build .
+
+  docker-compose:
+    name: Test docker-compose build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build app Docker image with docker-compose
+        run: docker-compose build
+
+  rubocop:
+    name: Ruby linter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build app docker image with docker
+        run: docker build . -t test-image
+      - name: Run linter in container
+        run: docker run test-image rubocop --fail-level F || exit $?
+
+  rspec:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build app docker image with docker
+        run: docker build . -t test-image
+      - name: Run linter in container
+        run: docker run test-image rspec || exit $?
