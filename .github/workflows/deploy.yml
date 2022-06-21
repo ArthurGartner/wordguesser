@@ -1,0 +1,14 @@
+name: Docker app container testing
+
+on:
+  pull_request:
+    branches: [develop]
+
+jobs:
+  docker-compose:
+    name: Test docker-compose build
+    uses: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build app Docker image with docker-compose
+        run: docker-compose build
