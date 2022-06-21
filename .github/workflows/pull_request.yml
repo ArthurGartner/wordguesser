@@ -44,7 +44,7 @@ jobs:
         run: docker run test-image rspec || exit $?
 
   cucumber:
-    name: Unit tests
+    name: Integration tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
