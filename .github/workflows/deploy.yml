@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Check if Docker is isntalled
+      - name: Check if Docker is installed
         run: docker --version
       - name: Build app Docker image with Docker
         run: docker build .
@@ -28,9 +28,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Check if Docker is isntalled
-        run: docker --version
-      - name: Build app Docker image with Docker
+      - name: Build app docker image with docker
         run: docker build . -t test-image
-      - name: Run tests in container
-        run: docker run test-image rubocop '--fail-level F' || exit $?
+      - name: Run linter in container
+        run: docker run test-image rubocop --fail-level F || exit $?
+
+  rspec:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build app docker image with docker
+        run: docker build . -t test-image
+      - name: Run linter in container
+        run: docker run test-image rspec || exit $?
