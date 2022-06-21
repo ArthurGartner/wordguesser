@@ -6,7 +6,7 @@ on:
 
 jobs:
   docker:
-    name: Check Docker image build
+    name: Check docker image build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -33,4 +33,4 @@ jobs:
       - name: Build app Docker image with Docker
         run: docker build . -t test-image
       - name: Run tests in container
-        run: docker run test-image rubocop --fail-level-error || exit $?
+        run: docker run test-image rubocop '--fail-level F' || exit $?
