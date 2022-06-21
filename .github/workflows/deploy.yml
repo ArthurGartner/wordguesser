@@ -7,7 +7,7 @@ on:
 jobs:
   docker:
     name: Check Docker image build
-    uses: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Check if Docker is isntalled
@@ -17,7 +17,7 @@ jobs:
 
   docker-compose:
     name: Test docker-compose build
-    uses: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Build app Docker image with docker-compose
@@ -25,7 +25,7 @@ jobs:
 
   rubocop:
     name: Ruby linter
-    uses: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Check if Docker is isntalled
