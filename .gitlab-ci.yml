@@ -11,7 +11,7 @@ variables:
   # $CI_REGISTRY_IMAGE is the address of the registry tied to this project.
   # $CI_COMMIT_REF_NAME resolves to branch or tag name it is safer to use $CI_COMMIT_REF_SLUG as the image tag.
 
-# CI/CD Service definition -> More Requirements for Docker in Docker
+# CI/CD Service definition -> More Requirements for Docker in Docker..
 services:
   - name: docker:dind
     entrypoint: ["env", "-u", "DOCKER_HOST"]
