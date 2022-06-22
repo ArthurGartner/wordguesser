@@ -33,6 +33,7 @@ jobs:
 
   aws-deploy:
     name: Deploy app to AWS elastic beanstalk
+    needs: push-to-hub
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Latest Repo
